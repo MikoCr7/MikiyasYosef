@@ -2,37 +2,104 @@ import React from 'react';
 
 const Testimonials = () => {
   const quotes = [
-    { 
-      name: 'Amara Tekle', 
-      role: 'Brand Manager at TechVibe', 
-      text: 'Mikiyas transformed our brand identity completely! His creative vision and attention to detail brought our company to life. The video campaigns he created increased our engagement by 300%. Truly exceptional work!', 
-      rating: 5, 
+    // Web Development Testimonials (4)
+    {
+      name: 'Portfolio Client',
+      role: 'Creative Professional',
+      text: 'Mikiyas developed my portfolio website with custom React animations. The page load time is under 2 seconds, and we achieved a 98% mobile usability score. His web development skills combined with his design expertise created a unique, responsive website that perfectly showcases my work. Simply brilliant!',
+      rating: 5,
       avatar: '',
-      category: 'branding'
+      category: 'web'
     },
+    {
+      name: 'E-Commerce Startup Owner',
+      role: 'CEO, E-Commerce Startup',
+      text: 'Mikiyas built our complete e-commerce platform from scratch. The React frontend with Node.js backend and Stripe payment integration works flawlessly. We achieved a 95% conversion rate and 1.5s page load time. His full-stack development skills are exceptional, and the platform handles thousands of transactions daily without issues.',
+      rating: 5,
+      avatar: '',
+      category: 'web'
+    },
+    {
+      name: 'Corporate Company Director',
+      role: 'Marketing Director, Corporate Company',
+      text: 'Mikiyas created our corporate website with Next.js and Contentful CMS integration. The website is professional, easy to manage, and SEO optimized. We saw a 40% increase in organic traffic and a 96% mobile usability score. His ability to create a user-friendly CMS for non-technical users made content management effortless.',
+      rating: 5,
+      avatar: '',
+      category: 'web'
+    },
+    {
+      name: 'Data Analytics Manager',
+      role: 'Product Manager, Data Analytics Company',
+      text: 'Mikiyas developed our analytics dashboard with real-time data visualization using React, D3.js, and Chart.js. The dashboard is intuitive and displays complex data beautifully. We improved data analysis time by 70% and achieved 98% user satisfaction. The real-time API integration works seamlessly.',
+      rating: 5,
+      avatar: '',
+      category: 'web'
+    },
+    // Video Editing Testimonials (4)
     { 
-      name: 'Daniel Mekonnen', 
-      role: 'CEO, Creative Studio', 
-      text: 'Working with Mikiyas is a game-changer. His ability to combine stunning visuals with powerful storytelling in his video edits is unmatched. Every project exceeds expectations and delivers measurable results.', 
+      name: 'Video Production Client', 
+      role: 'Marketing Agency', 
+      text: 'Mikiyas edited our marketing video and handled all post-production work. His video editing skills transformed raw footage into a compelling story. The video exceeded 100K views in the first week. His color grading and motion graphics integration created a professional, polished result that exceeded our expectations.', 
       rating: 5, 
       avatar: '',
       category: 'video'
     },
-    { 
-      name: 'Sofia Teshome', 
-      role: 'Marketing Director', 
-      text: 'Mikiyas brought our vision to reality with incredible design work. His motion graphics and social media content helped us stand out in a crowded market. The attention to detail and creative approach is outstanding!', 
-      rating: 5, 
-      avatar: '',
-      category: 'design'
-    },
     {
-      name: 'Elias Tadesse',
-      role: 'Startup Founder',
-      text: 'The website and branding package Mikiyas delivered was beyond my wildest expectations. His designs are modern, functional, and beautiful. Our conversion rates doubled after the launch. Simply brilliant!',
+      name: 'Corporate Video Producer',
+      role: 'Marketing Director, Corporate Company',
+      text: 'Mikiyas produced our corporate promotional video with professional editing and color grading. The video effectively communicates our company values and services. It was featured on our homepage and achieved a 95% completion rate. His attention to detail in color grading and sound design is outstanding.',
       rating: 5,
       avatar: '',
-      category: 'web'
+      category: 'video'
+    },
+    {
+      name: 'YouTube Creator',
+      role: 'Content Creator',
+      text: 'Mikiyas edits all my YouTube videos with engaging transitions and effects. His dynamic editing style keeps viewers engaged throughout. Since working with him, I\'ve seen a 40% increase in average watch time and a 60% increase in subscriber growth. His motion graphics and consistent branding make my content stand out.',
+      rating: 5,
+      avatar: '',
+      category: 'video'
+    },
+    {
+      name: 'Event Organizer',
+      role: 'Event Manager',
+      text: 'Mikiyas created our event highlight reel with fast-paced editing and music synchronization. He perfectly captured the energy and excitement of our live event. The video received 500K+ views on social media with 95% positive feedback. His ability to tell a story through editing is remarkable.',
+      rating: 5,
+      avatar: '',
+      category: 'video'
+    },
+    // Motion Graphics Testimonials (4)
+    { 
+      name: 'Product Company Owner', 
+      role: 'Product Company', 
+      text: 'Mikiyas created our animated explainer video with motion graphics. The video engagement rate reached 85% on social platforms. His ability to explain complex product features through engaging animations is remarkable. The 3D elements and smooth transitions perfectly captured our brand message.', 
+      rating: 5, 
+      avatar: '',
+      category: 'motion'
+    },
+    {
+      name: 'Branding Agency Director',
+      role: 'Creative Director, Branding Agency',
+      text: 'Mikiyas created our logo animation with particle effects and smooth transitions. The animation perfectly captures our brand essence in just 5 seconds. It has a 92% completion rate and has been used in 50+ brand presentations. The particle effects and transitions are stunning!',
+      rating: 5,
+      avatar: '',
+      category: 'motion'
+    },
+    {
+      name: 'Social Media Agency Manager',
+      role: 'Social Media Manager',
+      text: 'Mikiyas created animated social media posts and stories for our campaigns. The motion graphics library he developed performs exceptionally well across all platforms. We saw a 150% increase in engagement rate and a 200% increase in shares. His animated content always stands out in crowded feeds.',
+      rating: 5,
+      avatar: '',
+      category: 'motion'
+    },
+    {
+      name: 'Product Manufacturer',
+      role: 'Product Marketing Manager',
+      text: 'Mikiyas created our 3D product animation with cinematic camera movements. The photorealistic rendering showcases our product features beautifully. The animation achieved an 88% engagement rate and was featured in our product launch campaign. His 3D skills and attention to lighting details are exceptional.',
+      rating: 5,
+      avatar: '',
+      category: 'motion'
     }
   ];
 

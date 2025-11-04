@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import projects from '../data/projects';
 import { trackProjectView } from '../utils/analytics';
+import NigusEcommerce from './NigusEcommerce';
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -13,6 +14,8 @@ const Portfolio = () => {
   const [modalImageLoaded, setModalImageLoaded] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [selectedGalleryImage, setSelectedGalleryImage] = useState(null);
+  const [showDemoModal, setShowDemoModal] = useState(false);
+  const [demoProject, setDemoProject] = useState(null);
   const portfolioRef = useRef(null);
 
   // projects now imported from ../data/projects
@@ -422,8 +425,14 @@ const Portfolio = () => {
   // Keyboard shortcuts handler
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // ESC to close image popout first, then gallery/project modal
+      // ESC to close demo modal first, then image popout, then gallery/project modal
       if (e.key === 'Escape') {
+        if (showDemoModal) {
+          setShowDemoModal(false);
+          setDemoProject(null);
+          document.body.style.overflow = '';
+          return;
+        }
         if (selectedGalleryImage) {
           closeImagePopout();
           return;
@@ -450,11 +459,11 @@ const Portfolio = () => {
       }
     };
 
-    if (selectedProject || selectedGalleryImage) {
+    if (selectedProject || selectedGalleryImage || showDemoModal) {
       window.addEventListener('keydown', handleKeyDown);
     }
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProject, selectedGalleryImage, filteredProjects]);
+  }, [selectedProject, selectedGalleryImage, filteredProjects, showDemoModal]);
 
   // For local images, we don't need srcSet generation
   // The browser will handle WebP images efficiently
@@ -805,6 +814,52 @@ const Portfolio = () => {
                       >
                         <i className="fas fa-expand" aria-hidden="true"></i>
                         <span>View Full Design</span>
+                      </button>
+                    )}
+                    {selectedProject.category === 'web' && (
+                      <button 
+                        className="view-demo-site-btn"
+                        onClick={() => {
+                          // For Nigus E-commerce, open in iframe modal
+                          if (selectedProject.title === 'Nigus E-commerce' || selectedProject.id === 9) {
+                            setDemoProject(selectedProject);
+                            setShowDemoModal(true);
+                            document.body.style.overflow = 'hidden';
+                          } else if (selectedProject.demo && selectedProject.demo !== '#') {
+                            window.open(selectedProject.demo, '_blank', 'noopener,noreferrer');
+                          } else if (selectedProject.github && selectedProject.github !== '#') {
+                            window.open(selectedProject.github, '_blank', 'noopener,noreferrer');
+                          }
+                        }}
+                        aria-label="View demo site"
+                        style={{
+                          marginTop: '1rem',
+                          padding: '0.75rem 1.5rem',
+                          background: 'var(--gradient-primary)',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          fontSize: '1rem',
+                          fontWeight: '600',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.5rem',
+                          transition: 'all 0.3s ease',
+                          width: '100%'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.transform = 'translateY(-2px)';
+                          e.target.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.4)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.transform = 'translateY(0)';
+                          e.target.style.boxShadow = 'none';
+                        }}
+                      >
+                        <i className="fas fa-external-link-alt" aria-hidden="true"></i>
+                        <span>View Demo Site</span>
                       </button>
                     )}
                   </>
@@ -1253,6 +1308,36 @@ const Portfolio = () => {
                   <p><i className="fas fa-info-circle" aria-hidden="true"></i> Use <kbd>←</kbd> <kbd>→</kbd> arrow keys to navigate • <kbd>ESC</kbd> to close</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Demo Modal for Nigus E-commerce */}
+      {showDemoModal && demoProject && (
+        <div className={`demo-modal-overlay ${showDemoModal ? 'active' : ''}`} onClick={() => {
+          setShowDemoModal(false);
+          setDemoProject(null);
+          document.body.style.overflow = '';
+        }}>
+          <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="demo-modal-header">
+              <h2>{demoProject.title}</h2>
+              <button 
+                className="demo-modal-close" 
+                onClick={() => {
+                  setShowDemoModal(false);
+                  setDemoProject(null);
+                  document.body.style.overflow = '';
+                }}
+                aria-label="Close demo"
+                title="Close (ESC)"
+              >
+                <i className="fas fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div className="demo-modal-iframe-container">
+              <NigusEcommerce />
             </div>
           </div>
         </div>
