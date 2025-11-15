@@ -64,6 +64,32 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    touch-action: pan-x pan-y;
+    -ms-touch-action: pan-x pan-y;
+}
+
+/* Prevent zooming on mobile devices */
+html {
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+    html, body {
+        touch-action: manipulation;
+        -ms-touch-action: manipulation;
+    }
+    
+    /* Prevent double-tap zoom on all elements */
+    * {
+        touch-action: manipulation;
+        -ms-touch-action: manipulation;
+    }
+    
+    /* Re-enable touch-action for input fields and textareas */
+    input, textarea, [contenteditable="true"] {
+        touch-action: auto;
+    }
 }
 
 .container {
@@ -706,24 +732,43 @@ h1, h2, h3, h4, h5, h6 {
     /* Ensure hero title and animation texts are visible on mobile */
     .hero-title {
         opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
     }
     
     .title-main {
         opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
         animation: none !important;
+        color: var(--text-primary) !important;
     }
     
     .title-gradient {
         opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
         animation: none !important;
+        -webkit-text-fill-color: transparent !important;
+        background: var(--gradient-primary) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
     }
     
     .rotating-text {
         opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
+        -webkit-text-fill-color: transparent !important;
+        background: var(--gradient-primary) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
     }
     
     .rotating-text-wrapper {
         opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
     }
 }
 
@@ -6725,6 +6770,44 @@ h1, h2, h3, h4, h5, h6 {
 
     .hero-title {
         font-size: 2.5rem;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .title-main {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        animation: none !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .title-gradient {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        animation: none !important;
+        -webkit-text-fill-color: transparent !important;
+        background: var(--gradient-primary) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+    }
+    
+    .rotating-text {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
+        -webkit-text-fill-color: transparent !important;
+        background: var(--gradient-primary) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+    }
+    
+    .rotating-text-wrapper {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
     }
 
     .stat-number {
@@ -6992,26 +7075,45 @@ h1, h2, h3, h4, h5, h6 {
     .hero-title {
         font-size: 2rem;
         opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
     }
 
     .title-main {
         font-size: 2rem;
         opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
         animation: none !important;
+        color: var(--text-primary) !important;
     }
 
     .title-gradient {
         font-size: 1.5rem;
         opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
         animation: none !important;
+        -webkit-text-fill-color: transparent !important;
+        background: var(--gradient-primary) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
     }
     
     .rotating-text {
         opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
+        -webkit-text-fill-color: transparent !important;
+        background: var(--gradient-primary) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
     }
     
     .rotating-text-wrapper {
         opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
     }
 
     .stat-number {
