@@ -56,6 +56,10 @@ img {
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
 }
 
 body {
@@ -64,8 +68,9 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    touch-action: pan-x pan-y;
-    -ms-touch-action: pan-x pan-y;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
 }
 
 /* Prevent zooming on mobile devices */
@@ -74,10 +79,51 @@ html {
     -ms-touch-action: manipulation;
 }
 
+/* Prevent horizontal scrolling on all sections */
+section {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Root container constraints */
+#root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* App wrapper constraints */
+.App {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Main content wrapper */
+main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
 @media (max-width: 768px) {
     html, body {
         touch-action: manipulation;
         -ms-touch-action: manipulation;
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    #root, .App, main {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
     
     /* Prevent double-tap zoom on all elements */
@@ -89,6 +135,13 @@ html {
     /* Re-enable touch-action for input fields and textareas */
     input, textarea, [contenteditable="true"] {
         touch-action: auto;
+    }
+    
+    /* Ensure all sections stay within viewport */
+    section {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 
@@ -3031,7 +3084,9 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
     position: relative;
     overflow: hidden;
+    overflow-x: hidden;
     width: 100%;
+    max-width: 100%;
 }
 
 .trusted-by::before {
@@ -3061,9 +3116,11 @@ h1, h2, h3, h4, h5, h6 {
 .clients-logos-wrapper {
     position: relative;
     overflow: hidden;
+    overflow-x: hidden;
     padding: 2rem 0;
     margin: 2rem 0;
     width: 100%;
+    max-width: 100%;
     contain: layout style paint;
     -webkit-overflow-scrolling: touch;
 }
@@ -3286,12 +3343,15 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .trusted-by {
         padding: 3.5rem 0;
+        overflow-x: hidden;
     }
     
     .clients-logos-wrapper {
         margin-left: -1rem;
         margin-right: -1rem;
         width: calc(100% + 2rem);
+        max-width: calc(100% + 2rem);
+        overflow-x: hidden;
     }
     
     .clients-logos-grid {
@@ -3329,12 +3389,15 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 480px) {
     .trusted-by {
         padding: 2.5rem 0;
+        overflow-x: hidden;
     }
     
     .clients-logos-wrapper {
         margin-left: -1rem;
         margin-right: -1rem;
         width: calc(100% + 2rem);
+        max-width: calc(100% + 2rem);
+        overflow-x: hidden;
     }
     
     .clients-logos-grid {
@@ -3374,7 +3437,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 6rem 0; 
     position: relative;
     overflow: hidden;
+    overflow-x: hidden;
     width: 100%;
+    max-width: 100%;
 }
 
 .testimonials .container {
@@ -3396,10 +3461,12 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .testimonials {
         padding: 3rem 0;
+        overflow-x: hidden;
     }
 
     .testimonials .container {
         padding: 0 1rem;
+        overflow-x: hidden;
     }
     
     .testimonial {
@@ -3419,6 +3486,8 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: -1rem;
         margin-right: -1rem;
         width: calc(100% + 2rem);
+        max-width: calc(100% + 2rem);
+        overflow-x: hidden;
     }
 
     .testimonials-scroll-wrapper::before,
@@ -3428,8 +3497,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 480px) {
+    .testimonials {
+        overflow-x: hidden;
+    }
+    
     .testimonials .container {
         padding: 0 1rem;
+        overflow-x: hidden;
     }
 
     .testimonial {
@@ -3449,6 +3523,8 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: -1rem;
         margin-right: -1rem;
         width: calc(100% + 2rem);
+        max-width: calc(100% + 2rem);
+        overflow-x: hidden;
     }
 
     .testimonials-scroll-wrapper::before,
@@ -3459,6 +3535,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .testimonials-scroll-wrapper {
     overflow: hidden;
+    overflow-x: hidden;
     position: relative;
     margin-bottom: 2rem;
     z-index: 1;
@@ -3466,6 +3543,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: -2rem;
     margin-right: -2rem;
     width: calc(100% + 4rem);
+    max-width: calc(100% + 4rem);
     -webkit-overflow-scrolling: touch;
 }
 
