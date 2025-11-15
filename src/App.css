@@ -573,12 +573,11 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid rgba(0, 212, 255, 0.2);
     box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    padding: 0.5rem 0;
-    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+    padding: 0;
+    margin: 0;
     justify-content: space-around;
     align-items: center;
-    gap: 0.25rem;
-    margin: 0;
+    gap: 0;
 }
 
 .bottom-nav-item {
@@ -591,8 +590,9 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     color: var(--text-secondary);
     cursor: pointer;
-    padding: 0.5rem 0.75rem;
-    border-radius: 12px;
+    padding: 0.75rem 0.5rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    border-radius: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     flex: 1;
@@ -600,6 +600,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.7rem;
     font-weight: 500;
     overflow: hidden;
+    margin: 0;
 }
 
 .bottom-nav-item::before {
@@ -720,9 +721,13 @@ h1, h2, h3, h4, h5, h6 {
     /* Ensure bottom nav is flush with bottom - no gaps */
     .bottom-nav {
         bottom: 0 !important;
-        margin-bottom: 0 !important;
-        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        padding-bottom: env(safe-area-inset-bottom) !important;
         position: fixed !important;
+        width: 100% !important;
     }
     
     /* Remove any body/html padding that might create gap */
@@ -791,10 +796,12 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     .hero {
-        min-height: auto;
-        height: auto;
-        overflow: visible;
-        padding: 2rem 0;
+        height: 80vh;
+        max-height: 80vh;
+        min-height: 80vh;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
     }
     
     /* Ensure hero title and animation texts are visible on mobile */
@@ -1012,14 +1019,18 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .hero-container {
         padding: 0 1rem;
-        min-height: auto;
-        padding-top: 4rem;
-        padding-bottom: 2.5rem;
+        height: 80vh;
+        max-height: 80vh;
+        min-height: 80vh;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         width: 100%;
+        overflow: hidden;
+        position: relative;
     }
 }
 
@@ -3117,11 +3128,12 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     overflow: hidden;
     overflow-x: hidden;
+    overflow-y: visible;
     padding: 2rem 0;
     margin: 2rem 0;
     width: 100%;
     max-width: 100%;
-    contain: layout style paint;
+    contain: layout style;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -3129,6 +3141,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     gap: 0;
     animation: scrollLogos 50s linear infinite;
+    -webkit-animation: scrollLogos 50s linear infinite;
     will-change: transform;
     width: fit-content;
     transform: translate3d(0, 0, 0);
@@ -3143,6 +3156,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .clients-logos-scroll:hover {
     animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+    .clients-logos-scroll:hover {
+        animation-play-state: running !important;
+    }
 }
 
 .clients-logos-grid {
@@ -3360,7 +3379,14 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .clients-logos-scroll {
-        animation-duration: 40s;
+        animation: scrollLogos 40s linear infinite !important;
+        animation-duration: 40s !important;
+        animation-play-state: running !important;
+        animation-fill-mode: both !important;
+        will-change: transform !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: scrollLogos 40s linear infinite !important;
     }
     
     .client-logo-item {
@@ -3406,7 +3432,14 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .clients-logos-scroll {
-        animation-duration: 35s;
+        animation: scrollLogos 35s linear infinite !important;
+        animation-duration: 35s !important;
+        animation-play-state: running !important;
+        animation-fill-mode: both !important;
+        will-change: transform !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: scrollLogos 35s linear infinite !important;
     }
     
     .client-logo-item {
@@ -3443,6 +3476,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .testimonials .container {
+    max-width: 100%;
+    padding: 0 4rem;
     position: relative;
 }
 
@@ -3478,7 +3513,14 @@ h1, h2, h3, h4, h5, h6 {
     
     .testimonials-scroll {
         gap: 1.5rem;
-        animation-duration: 35s;
+        animation: scrollTestimonials 35s linear infinite !important;
+        animation-duration: 35s !important;
+        animation-play-state: running !important;
+        animation-fill-mode: both !important;
+        will-change: transform !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: scrollTestimonials 35s linear infinite !important;
     }
 
     .testimonials-scroll-wrapper {
@@ -3515,7 +3557,14 @@ h1, h2, h3, h4, h5, h6 {
     
     .testimonials-scroll {
         gap: 1.25rem;
-        animation-duration: 30s;
+        animation: scrollTestimonials 30s linear infinite !important;
+        animation-duration: 30s !important;
+        animation-play-state: running !important;
+        animation-fill-mode: both !important;
+        will-change: transform !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        -webkit-animation: scrollTestimonials 30s linear infinite !important;
     }
 
     .testimonials-scroll-wrapper {
@@ -3536,14 +3585,15 @@ h1, h2, h3, h4, h5, h6 {
 .testimonials-scroll-wrapper {
     overflow: hidden;
     overflow-x: hidden;
+    overflow-y: visible;
     position: relative;
     margin-bottom: 2rem;
     z-index: 1;
-    padding: 0 2rem;
-    margin-left: -2rem;
-    margin-right: -2rem;
-    width: calc(100% + 4rem);
-    max-width: calc(100% + 4rem);
+    padding: 0 4rem;
+    margin-left: -4rem;
+    margin-right: -4rem;
+    width: calc(100% + 8rem);
+    max-width: calc(100% + 8rem);
     -webkit-overflow-scrolling: touch;
 }
 
@@ -3573,6 +3623,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 2rem;
     width: fit-content;
     animation: scrollTestimonials 40s linear infinite;
+    -webkit-animation: scrollTestimonials 40s linear infinite;
     transform: translate3d(0, 0, 0);
     will-change: transform;
     backface-visibility: hidden;
@@ -8416,9 +8467,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-    * {
+    *:not(.clients-logos-scroll):not(.testimonials-scroll) {
         animation: none !important;
         transition: none !important;
+    }
+    * {
         scroll-behavior: auto !important;
     }
     .particle-canvas,
