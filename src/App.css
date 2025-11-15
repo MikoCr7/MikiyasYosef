@@ -708,6 +708,21 @@ h1, h2, h3, h4, h5, h6 {
     .nav-menu {
         display: flex;
     }
+    
+    /* Ensure desktop animations work properly */
+    .title-main {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 0.4s forwards;
+    }
+    
+    .title-gradient {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 0.6s forwards;
+    }
+    
+    .rotating-text {
+        animation: textGlow 2s ease-in-out infinite;
+    }
 }
 
 /* Hero Section */
@@ -769,6 +784,103 @@ h1, h2, h3, h4, h5, h6 {
         opacity: 1 !important;
         visibility: visible !important;
         display: inline-block !important;
+    }
+    
+    /* Ensure all hero elements are visible on mobile */
+    .hero-content {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .hero-badge {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-flex !important;
+    }
+    
+    .hero-description {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .hero-stats {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    .hero-actions {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    .hero-social {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        margin-top: 2rem !important;
+        gap: 1rem !important;
+        width: 100% !important;
+    }
+    
+    .social-icon {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    .stat-item {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-flex !important;
+    }
+    
+    .floating-icons {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .floating-icon {
+        opacity: 0.3 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    .particle-canvas {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    /* Ensure all sections are visible */
+    .about,
+    .experience,
+    .services,
+    .portfolio,
+    .testimonials,
+    .trusted-by,
+    .contact,
+    footer {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
     }
 }
 
@@ -6770,44 +6882,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .hero-title {
         font-size: 2.5rem;
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
-    }
-    
-    .title-main {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
-        animation: none !important;
-        color: var(--text-primary) !important;
-    }
-    
-    .title-gradient {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
-        animation: none !important;
-        -webkit-text-fill-color: transparent !important;
-        background: var(--gradient-primary) !important;
-        -webkit-background-clip: text !important;
-        background-clip: text !important;
-    }
-    
-    .rotating-text {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: inline-block !important;
-        -webkit-text-fill-color: transparent !important;
-        background: var(--gradient-primary) !important;
-        -webkit-background-clip: text !important;
-        background-clip: text !important;
-    }
-    
-    .rotating-text-wrapper {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: inline-block !important;
     }
 
     .stat-number {
@@ -7160,7 +7234,15 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-social {
-        display: none;
+        display: flex !important;
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        margin-top: 2rem !important;
+        gap: 1rem !important;
     }
 
     .section-title {
