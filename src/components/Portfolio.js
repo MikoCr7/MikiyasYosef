@@ -2,11 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import projects from '../data/projects';
 import { trackProjectView } from '../utils/analytics';
 import NigusEcommerce from './NigusEcommerce';
+import TeleBOT from './TeleBOT';
 
 const Portfolio = () => {
+  // Detect mobile device for default filter
+  const [isMobile, setIsMobile] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  // Default to 'all' (All Projects) on both mobile and desktop
   const [activeFilter, setActiveFilter] = useState('all');
-  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState(projects);
   const [isVisible, setIsVisible] = useState(false);
   const [isFiltering, setIsFiltering] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -30,6 +34,15 @@ const Portfolio = () => {
   ];
 
   useEffect(() => {
+    // Detect mobile on mount and resize
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     // Initialize filter from URL (e.g., ?filter=web)
     const validFilterIds = ['all', 'branding', 'ui-ux', 'motion', 'print', 'web'];
     const params = new URLSearchParams(window.location.search);
@@ -45,12 +58,16 @@ const Portfolio = () => {
       if (f && validFilterIds.includes(f)) {
         setActiveFilter(f);
       } else {
+        // Default to 'all'
         setActiveFilter('all');
       }
     };
     window.addEventListener('popstate', handlePopState);
 
-    return () => window.removeEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   useEffect(() => {
@@ -79,7 +96,7 @@ const Portfolio = () => {
     // Simulate initial loading for skeleton effect
     const timer = setTimeout(() => {
       setIsInitialLoading(false);
-    }, 800);
+    }, 300);
 
     return () => {
       observer.disconnect();
@@ -88,11 +105,14 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
+    let filtered = [];
     if (activeFilter === 'all') {
-      setFilteredProjects(projects);
+      filtered = projects;
     } else {
-      setFilteredProjects(projects.filter(project => project.category === activeFilter));
+      filtered = projects.filter(project => project.category === activeFilter);
     }
+    setFilteredProjects(filtered);
+    
     // Animate filter transition
     if (!prefersReducedMotion) {
       setIsFiltering(true);
@@ -530,19 +550,7 @@ const Portfolio = () => {
           </div>
 
           <div className={`portfolio-grid ${isFiltering ? 'animating' : ''}`}>
-            {isInitialLoading && filteredProjects.length > 0 ? (
-              // Skeleton loaders
-              Array.from({ length: filteredProjects.length }).map((_, index) => (
-                <div key={`skeleton-${index}`} className="portfolio-item-skeleton">
-                  <div className="skeleton-image"></div>
-                  <div className="skeleton-content">
-                    <div className="skeleton-title"></div>
-                    <div className="skeleton-text"></div>
-                    <div className="skeleton-text short"></div>
-                  </div>
-                </div>
-              ))
-            ) : (
+            {filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
               <div 
                 key={project.id} 
@@ -673,6 +681,10 @@ const Portfolio = () => {
               )}
               </div>
               ))
+            ) : (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
+                <p>No projects found in this category.</p>
+              </div>
             )}
           </div>
 
@@ -820,8 +832,12 @@ const Portfolio = () => {
                       <button 
                         className="view-demo-site-btn"
                         onClick={() => {
-                          // For Nigus E-commerce, open in iframe modal
+                          // For Nigus E-commerce and TeleBOT, open in iframe modal
                           if (selectedProject.title === 'Nigus E-commerce' || selectedProject.id === 9) {
+                            setDemoProject(selectedProject);
+                            setShowDemoModal(true);
+                            document.body.style.overflow = 'hidden';
+                          } else if (selectedProject.title === 'TeleBOT' || selectedProject.id === 13) {
                             setDemoProject(selectedProject);
                             setShowDemoModal(true);
                             document.body.style.overflow = 'hidden';
@@ -1337,7 +1353,11 @@ const Portfolio = () => {
               </button>
             </div>
             <div className="demo-modal-iframe-container">
-              <NigusEcommerce />
+              {demoProject.title === 'Nigus E-commerce' || demoProject.id === 9 ? (
+                <NigusEcommerce />
+              ) : demoProject.title === 'TeleBOT' || demoProject.id === 13 ? (
+                <TeleBOT />
+              ) : null}
             </div>
           </div>
         </div>

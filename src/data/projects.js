@@ -193,11 +193,11 @@ const projects = [
   },
   {
     id: 13,
-    title: "TeleChat",
+    title: "TeleBOT",
     description: "Real-time chat application with video calling features",
     tech: "React • Socket.io • WebRTC • Node.js",
     category: "web",
-    image: "/img/Portfolio-5.webp",
+    image: "/img/TeleChat/image.png",
     demo: "https://www.behance.net/mikiyasyosafe",
     github: "https://github.com/MikoCr7",
     featured: false,

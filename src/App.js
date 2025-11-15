@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import ScrollIndicator from './components/ScrollIndicator';
 import Services from './components/Services';
 import Testimonials from './components/Testimonials';
+import TrustedBy from './components/TrustedBy';
 import LoadingScreen from './components/LoadingScreen';
 import ContentProtection from './components/ContentProtection';
 
@@ -40,6 +41,7 @@ function App() {
             <Services />
             <Portfolio />
             <Testimonials />
+            <TrustedBy />
             <Contact />
           </main>
           <Footer />
