@@ -499,6 +499,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-around;
     align-items: center;
     gap: 0.25rem;
+    margin: 0;
 }
 
 .bottom-nav-item {
@@ -634,7 +635,38 @@ h1, h2, h3, h4, h5, h6 {
     
     /* Add padding to main content to prevent it from being hidden behind bottom nav */
     main#main-content {
-        padding-bottom: 80px;
+        padding-bottom: 70px;
+    }
+    
+    /* Ensure bottom nav is flush with bottom - no gaps */
+    .bottom-nav {
+        bottom: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+        position: fixed !important;
+    }
+    
+    /* Remove any body/html padding that might create gap */
+    body {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    html {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Ensure App container doesn't create gap */
+    .App {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Ensure footer doesn't create gap */
+    footer {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
     }
 }
 
@@ -669,6 +701,29 @@ h1, h2, h3, h4, h5, h6 {
         height: auto;
         overflow: visible;
         padding: 2rem 0;
+    }
+    
+    /* Ensure hero title and animation texts are visible on mobile */
+    .hero-title {
+        opacity: 1 !important;
+    }
+    
+    .title-main {
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    
+    .title-gradient {
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    
+    .rotating-text {
+        opacity: 1 !important;
+    }
+    
+    .rotating-text-wrapper {
+        opacity: 1 !important;
     }
 }
 
@@ -6936,14 +6991,27 @@ h1, h2, h3, h4, h5, h6 {
 
     .hero-title {
         font-size: 2rem;
+        opacity: 1 !important;
     }
 
     .title-main {
         font-size: 2rem;
+        opacity: 1 !important;
+        animation: none !important;
     }
 
     .title-gradient {
         font-size: 1.5rem;
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    
+    .rotating-text {
+        opacity: 1 !important;
+    }
+    
+    .rotating-text-wrapper {
+        opacity: 1 !important;
     }
 
     .stat-number {
